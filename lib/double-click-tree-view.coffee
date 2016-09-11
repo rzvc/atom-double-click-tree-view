@@ -13,10 +13,10 @@ class DoubleClickTreeView
         @treeView.openSelectedEntry.call(@treeView)
         false
 
-      @treeView.on 'click', '.entry > .list-item', (e) =>
+      @treeView.on 'click', '.entry.list-nested-item > .list-item', (e) =>
         if (e.target == e.currentTarget)
-          span = e.currentTarget.querySelector(':scope >.icon-file-directory')
-          
+          span = e.currentTarget.querySelector(':scope >.name')
+
           if (span && e.offsetX < span.offsetLeft)
             @treeView.openSelectedEntry.call(@treeView)
         false
