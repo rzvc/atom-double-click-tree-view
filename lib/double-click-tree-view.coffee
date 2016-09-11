@@ -13,6 +13,14 @@ class DoubleClickTreeView
         @treeView.openSelectedEntry.call(@treeView)
         false
 
+      @treeView.on 'click', '.entry > .list-item', (e) =>
+        if (e.target == e.currentTarget)
+          span = e.currentTarget.querySelector(':scope >.icon-file-directory')
+          
+          if (span && e.offsetX < span.offsetLeft)
+            @treeView.openSelectedEntry.call(@treeView)
+        false
+
   deactivate: ->
     @treeView.entryClicked = @treeView.originalEntryClicked
     delete @treeView.originalEntryClicked
